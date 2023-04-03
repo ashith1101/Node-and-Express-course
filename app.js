@@ -1,5 +1,8 @@
-const ldh=require('lodash')
+const {createReadStream}=require('fs');
 
-const items=[1,[2,[3,[4,[5]]]]]
-const newItems=ldh.flattenDeep(items)
-console.log(newItems)
+const stream =createReadStream('./content/big.txt',{encoding:'utf-8'});
+
+stream.on('data',(result)=>{
+    console.log(result)
+})
+stream.on('error',(err)=>console.log(err))
